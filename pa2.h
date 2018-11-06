@@ -1,9 +1,9 @@
 /*
  * Filename: pa2.h
- * Author: TODO
- * Userid: TODO
+ * Author: Ardel Alegre
+ * Userid: cs30fac
+ * StudentID: A15752566
  * Description: Constants and function prototypes used in PA2.
- * Date: TODO
  * Sources of Help: Given.
  */
 
@@ -66,6 +66,13 @@ long getRemainder( long dividend, long divisor );
 #define MAX_TENS_MIN 5
 #define MAX_ONES_HR 9
 #define MAX_TENS_HR 1
+#define MAX_ONES_HR_ABOVE_TEN 2
+#define MIN_ONES_SEC 0
+#define MIN_TENS_SEC 0
+#define MIN_ONES_MIN 0
+#define MIN_TENS_MIN 0
+#define MIN_ONES_HOUR 0
+#define MIN_TENS_HOUR 0
 
 #define BASE 10
 
@@ -105,6 +112,12 @@ long getRemainder( long dividend, long divisor );
 #define MAX_HR_EC  23
 
 /* TODO: Add more constants here if necessary. */
-
+#define AM_VALUE 0x61
+#define PM_VALUE 0x70
+#define AM_CHAR 'a'
+#define PM_CHAR 'p'
+#define TIME_STRING_SIZE 10
+#define CLOCK_WIDTH 12
+#define MAX_DIGIT_LENGTH 2
 
 #endif /* PA2_H */

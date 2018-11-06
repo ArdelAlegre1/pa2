@@ -1,0 +1,140 @@
+Author: Ardel Alegre
+UserID: fac30
+StudentID: A15752566
+
+PROBLEMS WITH PROJECT:
+cannot load current time;
+printClock.c bcd component prints in hex instead of bcd
+digital component sometimes prints doubled values
+PLEASE HAVE MERCY
+
+
+
+Description: This program will take up to two parameters, and print a set of
+clocks displaying BCD and digital values. The first parameter is an integer that determines how
+many times the clock will increment in seconds and print out a new clock, and
+the second parameter is a string that will choose a start time for the clocks to begin
+incrementing. If the first parameter is not identified, the default value will
+be 7, and if the second value is not identified, the default value will be the
+current time and the current time and date will be displayed before the clocks
+are printed out. 
+
+To build/compile use "make pa2" command.
+
+To run use command "./pa2 " followed by the optional parameters
+#No parameter example
+./pa2
+#One paramter exmaple
+./pa2 3
+#Two parameters example
+./pa2 4 12:12:12a
+
+Examples of normal output:
+Mon Nov  5 22:57:24 2018
+
+PPPPPPPPPPPP
+| .. .. .. |
+| .. oo .o |
+| .. .o o. |
+| o. oo .. |
+| 10 57 24 |
+PPPPPPPPPPPP
+
+PPPPPPPPPPPP
+| .. .. .. |
+| .. oo .o |
+| .. .o o. |
+| o. oo .o |
+| 10 57 25 |
+PPPPPPPPPPPP
+
+PPPPPPPPPPPP
+| .. .. .. |
+| .. oo .o |
+| .. .o oo |
+| o. oo .. |
+| 10 57 26 |
+PPPPPPPPPPPP
+
+PPPPPPPPPPPP
+| .. .. .. |
+| .. oo .o |
+| .. .o oo |
+| o. oo .o |
+| 10 57 27 |
+PPPPPPPPPPPP
+
+PPPPPPPPPPPP
+| .. .. .o |
+| .. oo .. |
+| .. .o o. |
+| o. oo .. |
+| 10 57 28 |
+PPPPPPPPPPPP
+
+PPPPPPPPPPPP
+| .. .. .o |
+| .. oo .. |
+| .. .o o. |
+| o. oo .o |
+| 10 57 29 |
+PPPPPPPPPPPP
+
+PPPPPPPPPPPP
+| .. .. .. |
+| .. oo .. |
+| .. .o o. |
+| o. oo o. |
+| 10 57 30 |
+PPPPPPPPPPPP
+
+PPPPPPPPPPPP
+| .. .. .. |
+| .. oo .. |
+| .. .o o. |
+| o. oo oo |
+| 10 57 31 |
+PPPPPPPPPPPP
+
+
+
+
+
+
+Examples of abnormal output:
+./pa2 1a2:12:12p
+
+One or more time values are not valid numbers
+
+./pa2 13:13:13p
+
+One or more time values are not within range
+
+
+
+How I did my testing:
+I spent a lot of time testing interpret time testing for the different errors.
+Parsing each of the digits was a challenge to separate each of the digits.
+I used print statements to determine what values were being given from strtol()
+when calling that each time.
+
+
+README questions:
+1. I would try my best to debug the logical error or ask piazza for help. If I
+cannot solve it I would turn in what I had.
+
+2. arr++;
+arr++;
+x = *arr;
+
+3. :set number :set nonumber
+
+4.
+0
+w
+5(uparrow)
+
+5.:q!
+
+6.cat -n main.c | argc
+7.ls -Aq | wc -l

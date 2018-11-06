@@ -30,13 +30,13 @@ getRemainder:
     *    bge     loop        @if divisor is greater than or equal to dividend
      */                       @return to loop
 
-    sdiv    r2, r0, r1
-    mul     r3, r2, r1
-    sub     r2, r0, r3
+    sdiv    r2, r0, r1          @r2 = r0/r1
+    mul     r3, r2, r1          @r3 = r2 * r1
+    sub     r2, r0, r3          @r2 = r0 - r3
 
     @end_loop:
 
-    mov     r0, r2
+    mov     r0, r2              @r0 = r2
 @standard epilogue
     sub     sp,fp, FP_OFFSET
     pop     {fp,pc}

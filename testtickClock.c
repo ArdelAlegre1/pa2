@@ -2,9 +2,7 @@
  * Author: Ardel Alegre
  * Userid: cs30fac
  * StudentID: A15752566
- * Description: Unit test program to test the function setClock.s
- * Date: TODO
- * Sources of Help: TODO
+ * Description: Unit test program to test the function tickClock.c
  */ 
 
 #include <stdio.h>
@@ -15,35 +13,37 @@
 #include "test.h"
 
 /*
- * Unit Test for setClock.s
+ * Unit Test for tickClock.c
  *
- * void setClock( const struct tInfo * tmPtr, unsigned char clock[] );
+ * void tickClock( unsigned long * clock );
  *
- * The setClock function should set the Binary coded decimal values for the
- * time into our clock arrauy.
+ * The tickClock.c function should use incrementBCDValue to increment the
+ * seconds value of time and update mins, hours, or ampm value when needed.
  *
- * Purpose: Tests our setClock implementation by passing a variety of values
- * in as test cases for our function. Tests edge cases like 0:0:0 times, larger
- * times, and others.
+ * Purpose: Tests our tickClock.c implementation by passing a variety of values
+ * in as test cases for our function. Tests edge cases like 11:59:59p ->
+ * 12:00:00a.
  */
 void testtickClock() {
+    //10:0:30a -> 10:20:31a
     unsigned long clock = 0x10203061;
     tickClock(&clock);
     TEST(clock == 0x10203161);
 
+    //05:19:59p -> 05:20:00p
     clock = 0x05195970;
     tickClock(&clock);
     TEST(clock == 0x05200070);
 
+    //09:59:59a -> 10:00:00a
     clock = 0x09595961;
     tickClock(&clock);
     TEST(clock == 0x10000061);
 
+    //11:59:59p -> 12:00:00a
     clock = 0x11595970;
     tickClock(&clock);
     TEST(clock == 0x12000061);
-    printf("%lx\n", clock);
-
 }
 
 int main( void ) {

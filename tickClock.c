@@ -8,38 +8,42 @@
 
 #include "pa2.h"
 #include <stdio.h>
-//#include "pa2Globals.c"
-
+#define HOUR_INDEX 3
+#define MIN_INDEX 2
+#define SEC_INDEX 1
+#define AMPM_INDEX 0
+#define AMPM_HOUR_CHANGE 0x12
+#define RETURNED_RESET 1
 void tickClock( unsigned long * clock) {
+    //create pointer to chars instead of individual digits
     unsigned char* ptr = (unsigned char *) clock;
-    unsigned char hour;
-    unsigned char min;
-    unsigned char sec;
-    unsigned char ampm;
+    //declare values
+    unsigned char hour = ptr[HOUR_INDEX];
+    unsigned char min = ptr[MIN_INDEX];
+    unsigned char sec = ptr[SEC_INDEX];
+    unsigned char ampm = ptr[AMPM_INDEX];
 
-
-    hour = ptr[3];
-    min = ptr[2];
-    sec = ptr[1];
-    ampm = ptr[0];
-
-    if (incrementBCDValue(&sec, 0x60, 0x00) == 1) {
-        if (incrementBCDValue(&min, 0x60, 0x00) == 1) {
-            incrementBCDValue(&hour, 0x13, 0x01);
-            if(hour == 0x12) {
-                if(ampm == 0x70) {
-                    ampm = 0x61;
+    //increments seconds
+    if (incrementBCDValue(&sec, SEC_THRESHOLD, SEC_RESERT) == RETURNED_RESET) {
+        //if seconds resets to 0 increment mins
+        if (incrementBCDValue(&min, MIN_THRESHOLD, MIN_RESERT) == RETURNED_RESET) {
+            //if mins resets to 0 increment hours
+            incrementBCDValue(&hour, HR_THRESHOLD, HR_RESET);
+            //if hours increments to 12 change ampm
+            if(hour == AMPM_HOUR_CHANGE) {
+                if(ampm == AM_VALUE) {
+                    ampm = PM_VALUE;
                 } 
                 else{
-                    ampm = 0x70;
+                    ampm = AM_VALUE;
                 }
             }
         }
     }
 
-
-    ptr[3] = hour;
-    ptr[2] = min;
-    ptr[1] = sec;
-    ptr[0] = ampm;
+    //update pointers
+    ptr[HOUR_INDEX] = hour;
+    ptr[MIN_INDEX] = min;
+    ptr[SEC_INDEX] = sec;
+    ptr[AMPM_INDEX] = ampm;
 }
